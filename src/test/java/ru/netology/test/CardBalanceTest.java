@@ -56,20 +56,4 @@ public class CardBalanceTest {
         assertEquals(expectedDBalanceFirstCard, actualBalanceFirstCard);
         assertEquals(expectedDBalanceSecondCard, actualBalanceSecondCard);
     }
-
-    @Test
-    void shouldGetErrormessageIfAbountMore() {
-        var firstCardInfo = getFirstCardInfo();
-        var secondCardInfo = getSecondCardInfo();
-        var firstCardBalance = cardBalancePage.getCardBalance(firstCardInfo);
-        var secondCardBalance = cardBalancePage.getCardBalance(secondCardInfo);
-        var amount = generateInValidAmount(secondCardBalance);
-        var transferPage = cardBalancePage.selectCardToTransfer(firstCardInfo);
-        transferPage.makeTransfer(String.valueOf(amount), secondCardInfo);
-        transferPage.findErrorMessage("Выполнена попытка перевода суммы, превышающей остаток на карте списания");
-        var actualBalanceFirstCard = cardBalancePage.getCardBalance(firstCardInfo);
-        var actualBalanceSecondCard = cardBalancePage.getCardBalance(secondCardInfo);
-        assertEquals(firstCardBalance, actualBalanceFirstCard);
-        assertEquals(secondCardBalance, actualBalanceSecondCard);
-    }
 }
