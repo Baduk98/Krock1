@@ -1,2 +1,6 @@
 rootProject.name = 'Krock1'
+include 'src:data'
+findProject(':src:data')?.name = 'data'
+include 'src:data'
+findProject(':src:data')?.name = 'data'
 
